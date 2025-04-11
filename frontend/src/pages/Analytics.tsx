@@ -63,7 +63,8 @@ export function Analytics() {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        }
+        },
+        mode: 'cors'
       });
 
       if (!response.ok) {

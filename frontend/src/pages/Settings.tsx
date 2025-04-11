@@ -28,12 +28,14 @@ export function Settings() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch('/api/settings', {
+        const response = await fetch(API_ENDPOINTS.SETTINGS, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }
+          },
+          mode: 'cors',
+          credentials: 'omit'
         });
 
         if (!response.ok) {
