@@ -11,29 +11,22 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-# Define allowed origins
-ALLOWED_ORIGINS = [
-    'https://sage-shield.onrender.com',
-    'http://localhost:5173'
-]
-
-# Configure CORS with specific origin handling
-@app.before_request
-def handle_preflight():
-    if request.method == "OPTIONS":
-        response = make_response()
-        origin = request.headers.get('Origin')
-        if origin in ALLOWED_ORIGINS:
-            response.headers.add('Access-Control-Allow-Origin', origin)
-            response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-            response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-        return response
+# Configure CORS
+CORS(app, 
+     resources={
+         r"/api/*": {
+             "origins": ["http://localhost:5173", "https://sage-shield-1.onrender.com"],
+             "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+             "allow_headers": ["Content-Type", "Authorization", "Accept"],
+             "max_age": 3600
+         }
+     })
 
 @app.after_request
-def after_request(response):
-    origin = request.headers.get('Origin')
-    if origin in ALLOWED_ORIGINS:
-        response.headers.add('Access-Control-Allow-Origin', origin)
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = request.headers.get('Origin', '*')
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Accept'
     return response
 
 @app.route('/')

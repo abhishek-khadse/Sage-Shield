@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, BarChart, Users } from 'lucide-react';
+import axios from 'axios';
 import { PAGES } from '../config/pages';
 import { API_ENDPOINTS } from '../config';
 import { ENV } from '../config/env';
@@ -57,7 +58,7 @@ export function Analytics() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(API_ENDPOINTS.ANALYTICS, {
+      const response = await fetch('/api/analytics', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -69,14 +70,7 @@ export function Analytics() {
         throw new Error(`Failed to fetch analytics data: ${response.status}`);
       }
 
-      let data;
-      try {
-        data = await response.json();
-      } catch (parseError) {
-        console.error('Error parsing response:', parseError);
-        throw new Error('Invalid response format from server');
-      }
-
+      const data = await response.json();
       if (!data || typeof data !== 'object') {
         throw new Error('Invalid data format received');
       }

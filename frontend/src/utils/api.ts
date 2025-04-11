@@ -25,11 +25,12 @@ const fetchWithTimeout = async (url: string, options: RequestInit = {}, timeout 
       ...options,
       signal: controller.signal,
       mode: 'cors',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         ...options.headers,
-      },
-      credentials: 'omit'
+      }
     });
 
     clearTimeout(id);
@@ -39,7 +40,7 @@ const fetchWithTimeout = async (url: string, options: RequestInit = {}, timeout 
     }
 
     return await response.json();
-  } catch (error) {
+  } catch (error: any) {
     console.error('API Error:', error);
     if (error.name === 'AbortError') {
       throw new Error('Request timed out');

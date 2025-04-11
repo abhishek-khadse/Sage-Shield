@@ -13,17 +13,17 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'https://sage-shield.onrender.com',
+        target: 'https://sage-shield-1.onrender.com',
         changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path,
+        secure: false,
+        ws: true,
         configure: (proxy, _options) => {
           proxy.on('error', (err, _req, _res) => {
             console.log('proxy error', err);
           });
-          proxy.on('proxyReq', (proxyReq, _req, _res) => {
-            proxyReq.setHeader('Origin', 'https://sage-shield.onrender.com');
-            proxyReq.setHeader('Accept', 'application/json');
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            proxyReq.removeHeader('Origin');
+            proxyReq.setHeader('Origin', 'https://sage-shield-1.onrender.com');
           });
         }
       }

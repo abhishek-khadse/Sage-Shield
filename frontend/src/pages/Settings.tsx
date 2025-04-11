@@ -27,36 +27,24 @@ export function Settings() {
       try {
         setLoading(true);
         setError(null);
-        // console.log('Fetching settings...');
-        const response = await fetch('https://sage-shield.onrender.com/api/settings', {
+
+        const response = await fetch('/api/settings', {
+          method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }
         });
-        
+
         if (!response.ok) {
-          // console.error('Response not OK:', response.status, response.statusText);
           throw new Error(`Failed to fetch settings: ${response.status}`);
         }
 
-        // First get the raw text to log any issues
-        const text = await response.text();
-        // console.log('Raw response:', text);
-
-        try {
-          const data = JSON.parse(text);
-          // console.log('Parsed settings:', data);
-          setSettings(data);
-          setError(null);
-        } catch (parseError) {
-          console.error('Parse error:', parseError);
-          throw new Error('Invalid response format from server');
-        }
+        const data = await response.json();
+        setSettings(data);
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
-        setError(`Error loading settings: ${errorMessage}`);
-        console.error('Error:', err);
+        console.error('Error fetching settings:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load settings');
       } finally {
         setLoading(false);
       }

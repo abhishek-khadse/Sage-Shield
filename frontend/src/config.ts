@@ -1,16 +1,16 @@
-const BACKEND_URL = `https://sage-shield.onrender.com/api`;
+const BACKEND_URL = `https://sage-shield-1.onrender.com`;
 
 export const API_ENDPOINTS = {
-    ANALYTICS: `${BACKEND_URL}/analytics`,
-    TRAFFIC: `${BACKEND_URL}/traffic`,
-    BLOCKED_IPS: `${BACKEND_URL}/blocked-ips`,
-    ACTIVE_CONNECTIONS: `${BACKEND_URL}/active-connections`,
-    BLOCK_IP: `${BACKEND_URL}/block-ip`,
-    UNBLOCK_IP: (ip: string) => `${BACKEND_URL}/unblock-ip/${ip}`,
-    SETTINGS: `${BACKEND_URL}/settings`,
-    NETWORK_NODES: `${BACKEND_URL}/network/nodes`,
-    NETWORK_STATS: `${BACKEND_URL}/network/stats`,
-    HEALTH: `${BACKEND_URL}/system/health`
+    ANALYTICS: `${BACKEND_URL}/api/analytics`,
+    TRAFFIC: `${BACKEND_URL}/api/traffic`,
+    BLOCKED_IPS: `${BACKEND_URL}/api/blocked-ips`,
+    ACTIVE_CONNECTIONS: `${BACKEND_URL}/api/active-connections`,
+    BLOCK_IP: `${BACKEND_URL}/api/block-ip`,
+    UNBLOCK_IP: (ip: string) => `${BACKEND_URL}/api/unblock-ip/${ip}`,
+    SETTINGS: `${BACKEND_URL}/api/settings`,
+    NETWORK_NODES: `${BACKEND_URL}/api/network/nodes`,
+    NETWORK_STATS: `${BACKEND_URL}/api/network/stats`,
+    HEALTH: `${BACKEND_URL}/api/system/health`
 };
 
 // UI Configuration
