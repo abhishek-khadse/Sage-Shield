@@ -8,12 +8,18 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true,
+    emptyOutDir: true,
+  },
   server: {
     port: 5173,
     host: true,
     proxy: {
       '/api': {
-        target: 'https://sage-shield-1.onrender.com',
+        target: process.env.VITE_API_URL || 'https://sage-shield-1.onrender.com',
         changeOrigin: true,
         secure: false,
         ws: true,
@@ -23,7 +29,7 @@ export default defineConfig({
           });
           proxy.on('proxyReq', (proxyReq, req, _res) => {
             proxyReq.removeHeader('Origin');
-            proxyReq.setHeader('Origin', 'https://sage-shield-1.onrender.com');
+            proxyReq.setHeader('Origin', process.env.VITE_API_URL || 'https://sage-shield-1.onrender.com');
           });
         }
       }
