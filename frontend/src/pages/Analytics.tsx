@@ -58,7 +58,7 @@ export function Analytics() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/analytics', {
+      const response = await fetch(API_ENDPOINTS.ANALYTICS, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -81,7 +81,7 @@ export function Analytics() {
       setError(err instanceof Error ? err.message : 'Failed to load analytics data');
       
       // Use mock data in development environment
-      if (ENV.NODE_ENV === 'development') {
+      if (import.meta.env.DEV) {
         console.log('Using mock data in development');
         setAnalyticsData({
           traffic: {

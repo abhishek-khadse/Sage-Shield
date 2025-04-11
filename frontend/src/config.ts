@@ -1,4 +1,4 @@
-const BACKEND_URL = `https://sage-shield-1.onrender.com`;
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'https://sage-shield-1.onrender.com';
 
 export const API_ENDPOINTS = {
     ANALYTICS: `${BACKEND_URL}/api/analytics`,

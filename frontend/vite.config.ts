@@ -16,25 +16,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: true,
-    proxy: {
-      '/api': {
-        target: process.env.VITE_API_URL || 'https://sage-shield-1.onrender.com',
-        changeOrigin: true,
-        secure: false,
-        ws: true,
-        configure: (proxy, _options) => {
-          proxy.on('error', (err, _req, _res) => {
-            console.log('proxy error', err);
-          });
-          proxy.on('proxyReq', (proxyReq, req, _res) => {
-            proxyReq.removeHeader('Origin');
-            proxyReq.setHeader('Origin', process.env.VITE_API_URL || 'https://sage-shield-1.onrender.com');
-          });
-        }
-      }
-    },
-    cors: false
+    host: true
   },
   resolve: {
     alias: {
