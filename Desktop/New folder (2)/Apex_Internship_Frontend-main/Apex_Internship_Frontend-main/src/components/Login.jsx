@@ -55,7 +55,7 @@ const secureStorage = {
   }
 }; 
 
-const NovaFiWallet = ({ onLogin }) => {
+const AlbusSecurityWallet = ({ onLogin }) => {
   const navigate = useNavigate();
   const { showSuccess, showError, showWarning, showInfo, showLoading, dismissToast } = useToast();
   
@@ -196,7 +196,7 @@ const NovaFiWallet = ({ onLogin }) => {
         }
         showSuccess(
           'Authentication Successful!', 
-          'Welcome to NovaFi. Redirecting to dashboard...'
+          'Welcome to Albus Security. Redirecting to dashboard...'
         );
         
         console.log("Authentication complete. Token stored.");
@@ -897,10 +897,10 @@ const NovaFiWallet = ({ onLogin }) => {
               Albus Security
             </h1>
             
-            {/* Powered by NovaFi */}
+            {/* Powered by Advanced Technology */}
             <div className="flex items-center justify-center gap-2 text-cyan-400 text-sm font-medium">
               <Sparkles className="w-4 h-4" />
-              <span>powered by NovaFi</span>
+              <span>powered by advanced technology</span>
               <Zap className="w-4 h-4" />
             </div>
             
@@ -929,7 +929,7 @@ const NovaFiWallet = ({ onLogin }) => {
             <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
               
               {/* Account Status Card */}
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-[#1a1a2e] via-[#13131a] to-[#0f0f13] border border-white/10 shadow-2xl relative overflow-hidden group backdrop-blur-sm before:absolute before:inset-0 before:bg-gradient-to-br before:from-indigo-500/5 before:via-purple-500/3 before:to-blue-500/5 before:-z-10 hover:shadow-[0_25px_50px_rgb(99,102,241,0.15)] transition-all duration-300">
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-[#13131a] to-[#0f0f13] border border-white/5 shadow-xl relative overflow-hidden group">
                 <div className="flex items-center gap-4">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white
                     ${hasValidSession ? 'bg-green-600' : 'bg-indigo-600'}
@@ -1155,7 +1155,7 @@ const NovaFiWallet = ({ onLogin }) => {
           {/* Footer */}
           <div className="mt-10 text-center">
             <p className="text-[11px] text-slate-600">
-              By connecting, you agree to NovaFi's <br/>
+              By connecting, you agree to Albus Security's <br/>
               <a href="#" className="text-slate-500 hover:text-indigo-400 underline decoration-slate-700 hover:decoration-indigo-500/50 underline-offset-2">Terms</a> & <a href="#" className="text-slate-500 hover:text-indigo-400 underline decoration-slate-700 hover:decoration-indigo-500/50 underline-offset-2">Privacy Policy</a>.
             </p>
           </div>
@@ -1166,4 +1166,4 @@ const NovaFiWallet = ({ onLogin }) => {
   );
 };
 
-export default NovaFiWallet;
+export default AlbusSecurityWallet;
